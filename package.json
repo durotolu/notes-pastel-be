@@ -1,0 +1,19 @@
+{
+  "name": "notes-pastel-be",
+  "version": "1.0.0",
+  "description": "Notes Pastel Backend",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "server": "nodemon src/index.ts"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.15",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}
