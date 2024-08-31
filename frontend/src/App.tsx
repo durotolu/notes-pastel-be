@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Note } from './types/Note';
+import { fetchNotes, createNote, deleteNote } from './api/api';
+import NoteForm from './components/NoteForm';
+import NoteList from './components/NoteList';
+import './styles/App.css';
 
-function App() {
+const App: React.FC = () => {
+  const [notes, setNotes] = useState<Note[]>([]);
+
+  const loadNotes = async () => {
+    const notes = await fetchNotes();
+    setNotes(notes);
+  };
+
+  useEffect(() => {
+    loadNotes();
+  }, []);
+
+  const handleAddNote = async (title: string, content: string) => {
+    const newNote = await createNote(title, content);
+    if (newNote) loadNotes()
+  };
+
+  const handleDeleteNote = async (id: number) => {
+    const deletedId = await deleteNote(id);
+    if (deletedId) loadNotes()
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Notes</h1>
+      <NoteForm onAddNote={handleAddNote} />
+      <NoteList notes={notes} onDelete={handleDeleteNote} />
     </div>
   );
-}
+};
 
 export default App;
