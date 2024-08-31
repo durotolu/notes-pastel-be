@@ -1,11 +1,9 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import noteRoutes from '../routes/noteRoutes';
 
 const server = express();
 
 server.use(express.json());
-
-server.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'Welcome to Notes!' });
-});
+server.use('/api', noteRoutes);
 
 export default server;
