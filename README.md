@@ -38,6 +38,7 @@ Spins up local servers on port 3000 and 4000
 Example:
 
 ```sh
+Server is running on port 4000
 Local:     http://localhost:3000
 ```
 
@@ -45,25 +46,29 @@ Local:     http://localhost:3000
 
 ```sh
 POST /notes
-
 - Description: Create a new note.
-- Request Body: { "title": "Note Title", "content": "Note content" }
+- Request Body: {
+    "title": "Note Title",
+    "content": "Note content"
+  }
 - Response: { "id": 1, "title": "Note Title", "content": "Note content", "timestamp": "2024-01-01T00:00:00Z" }
 
 GET /notes
-
 - Description: Fetch all notes.
-- Response: [{ "id": 1, "title": "Note Title", "content": "Note content", "timestamp": "2024-01-01T00:00:00Z" }]
+- Response: [{
+   "id": 1,
+   "title": "Note Title",
+   "content": "Note content",
+   "timestamp": "2024-01-01T00:00:00Z" 
+  }]
 
 DELETE /notes/:id
-
 - Description: Delete a note by its ID.
-- Response: { "message": "Note deleted successfully" }
 ```
 
 ## Database Schema
 
-```
+```sh
 CREATE TABLE IF NOT EXISTS notes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT,
@@ -74,7 +79,7 @@ CREATE TABLE IF NOT EXISTS notes (
 
 ## License
 
-```
+```sh
 This project is licensed under the MIT License.
 ```
 
